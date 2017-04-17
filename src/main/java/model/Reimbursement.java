@@ -16,9 +16,14 @@ public class Reimbursement {
     private Timestamp resolved;
     private int author;
     private int resolver;
-    private int type;
-    private int status;
+    private int typeId;
+    private String type;
+    private int statusID;
+    private String status;
 
+    public Reimbursement(int id) {
+        this.id = id;
+    }
 
     public int getId() {
         return id;
@@ -84,19 +89,35 @@ public class Reimbursement {
         this.resolver = resolver;
     }
 
-    public int getType() {
+    public int getTypeId() {
+        return typeId;
+    }
+
+    public void setTypeId(int typeId) {
+        this.typeId = typeId;
+    }
+
+    public String getType() {
         return type;
     }
 
-    public void setType(int type) {
+    public void setType(String type) {
         this.type = type;
     }
 
-    public int getStatus() {
+    public int getStatusID() {
+        return statusID;
+    }
+
+    public void setStatusID(int statusID) {
+        this.statusID = statusID;
+    }
+
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 
@@ -111,13 +132,16 @@ public class Reimbursement {
         if (Float.compare(that.getAmount(), getAmount()) != 0) return false;
         if (getAuthor() != that.getAuthor()) return false;
         if (getResolver() != that.getResolver()) return false;
-        if (getType() != that.getType()) return false;
-        if (getStatus() != that.getStatus()) return false;
+        if (getTypeId() != that.getTypeId()) return false;
+        if (getStatusID() != that.getStatusID()) return false;
         if (getDescription() != null ? !getDescription().equals(that.getDescription()) : that.getDescription() != null)
             return false;
         if (getReceipt() != null ? !getReceipt().equals(that.getReceipt()) : that.getReceipt() != null) return false;
         if (!getSubmitted().equals(that.getSubmitted())) return false;
-        return getResolved() != null ? getResolved().equals(that.getResolved()) : that.getResolved() == null;
+        if (getResolved() != null ? !getResolved().equals(that.getResolved()) : that.getResolved() != null)
+            return false;
+        if (getType() != null ? !getType().equals(that.getType()) : that.getType() != null) return false;
+        return getStatus() != null ? getStatus().equals(that.getStatus()) : that.getStatus() == null;
     }
 
     @Override
@@ -130,8 +154,10 @@ public class Reimbursement {
         result = 31 * result + (getResolved() != null ? getResolved().hashCode() : 0);
         result = 31 * result + getAuthor();
         result = 31 * result + getResolver();
-        result = 31 * result + getType();
-        result = 31 * result + getStatus();
+        result = 31 * result + getTypeId();
+        result = 31 * result + (getType() != null ? getType().hashCode() : 0);
+        result = 31 * result + getStatusID();
+        result = 31 * result + (getStatus() != null ? getStatus().hashCode() : 0);
         return result;
     }
 }
