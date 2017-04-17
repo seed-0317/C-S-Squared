@@ -70,5 +70,36 @@ public class User {
         this.role = role;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof User)) return false;
+
+        User user = (User) o;
+
+        if (getId() != user.getId()) return false;
+        if (getrID() != user.getrID()) return false;
+        if (!getUserName().equals(user.getUserName())) return false;
+        if (getFirstName() != null ? !getFirstName().equals(user.getFirstName()) : user.getFirstName() != null)
+            return false;
+        if (getLastName() != null ? !getLastName().equals(user.getLastName()) : user.getLastName() != null)
+            return false;
+        if (geteMail() != null ? !geteMail().equals(user.geteMail()) : user.geteMail() != null) return false;
+        return getRole() != null ? getRole().equals(user.getRole()) : user.getRole() == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getId();
+        result = 31 * result + getUserName().hashCode();
+        result = 31 * result + (getFirstName() != null ? getFirstName().hashCode() : 0);
+        result = 31 * result + (getLastName() != null ? getLastName().hashCode() : 0);
+        result = 31 * result + (geteMail() != null ? geteMail().hashCode() : 0);
+        result = 31 * result + getrID();
+        result = 31 * result + (getRole() != null ? getRole().hashCode() : 0);
+        return result;
+    }
+}
+
 
 
