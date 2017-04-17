@@ -1,0 +1,74 @@
+/* Go into PostGreSQL and create a database called ERS. */
+/* Open Database and run the queries below from the query tool to setup the tables */
+
+
+CREATE TABLE ERS_USER_ROLES(
+  UR_ID INT NOT NULL PRIMARY KEY,
+  UR_ROLE VARCHAR(40)
+);
+
+CREATE TABLE ERS_REIMBURSEMENT_STATUS(
+  RS_ID INT NOT NULL PRIMARY KEY,
+  RS_STATUS VARCHAR(30) NOT NULL
+);
+
+CREATE TABLE ERS_REIMBUSREMENT_TYPE(
+  RT_ID INT NOT NULL PRIMARY KEY,
+  RT_TYPE VARCHAR(30) NOT NULL
+);
+
+CREATE TABLE ERS_USERS(
+  U_ID INT NOT NULL PRIMARY KEY,
+  U_USERNAME VARCHAR(40) NOT NULL,
+  U_FIRSTNAME VARCHAR(30),
+  U_LASTNAME VARCHAR(30),
+  U_EMAIL VARCHAR(100),
+  UR_ID INT,
+  FOREIGN KEY (UR_ID) REFERENCES ERS_USER_ROLES(UR_ID)
+);
+
+CREATE TABLE ERS_REIMBURSEMENTS(
+  R_ID INT NOT NULL PRIMARY KEY,
+  R_AMOUNT NUMERIC(22,2) NOT NULL,
+  R_DESCRIPTION VARCHAR(100),
+  R_RECEIPT BYTEA,
+  R_SUBMITTED TIMESTAMP NOT NULL,
+  R_RESOLVED TIMESTAMP,
+  U_ID_AUTHOR INT NOT NULL,
+  U_ID_RESOLVER INT NOT NULL,
+  RS_ID INT NOT NULL,
+  RT_ID INT NOT NULL
+ );
+
+
+ALTER TABLE public.ers_reimbursements
+    ADD CONSTRAINT "U_ID_AUTHOR" FOREIGN KEY (u_id_author)
+    REFERENCES public.ers_users (u_id) MATCH SIMPLE
+    ON UPDATE NO ACTION
+    ON DELETE NO ACTION;
+CREATE INDEX "fki_U_ID_AUTHOR"
+    ON public.ers_reimbursements(u_id_author);
+
+ALTER TABLE public.ers_reimbursements
+    ADD CONSTRAINT "U_ID_RESOLVER" FOREIGN KEY (u_id_resolver)
+    REFERENCES public.ers_user_roles (ur_id) MATCH SIMPLE
+    ON UPDATE NO ACTION
+    ON DELETE NO ACTION;
+CREATE INDEX "fki_U_ID_RESOLVER"
+    ON public.ers_reimbursements(u_id_resolver);
+
+ALTER TABLE public.ers_reimbursements
+    ADD CONSTRAINT "RS_ID" FOREIGN KEY (rs_id)
+    REFERENCES public.ers_reimbursement_status (rs_id) MATCH SIMPLE
+    ON UPDATE NO ACTION
+    ON DELETE NO ACTION;
+CREATE INDEX "fki_RS_ID"
+    ON public.ers_reimbursements(rs_id);
+
+ALTER TABLE public.ers_reimbursements
+    ADD CONSTRAINT "RT_ID" FOREIGN KEY (rt_id)
+    REFERENCES public.ers_reimbusrement_type (rt_id) MATCH SIMPLE
+    ON UPDATE NO ACTION
+    ON DELETE NO ACTION;
+CREATE INDEX "fki_RT_ID"
+    ON public.ers_reimbursements(rt_id);
