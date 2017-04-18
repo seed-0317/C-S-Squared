@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>C S Squared Reimbursement</title>
+</head>
+<body>
+<h1>C S Squared Submit Reimbursement</h1>
+
+<form action="updateReimburse" method="post">
+    <p>
+        <label for="amount">Amount:</label>
+        <input id="amount" type="number" name ="amount"/><br/>
+    </p>
+    <P>
+        <label for="description">Description:</label>
+        <input id="description" type="text" name ="description"/><br/>
+    </P>
+    <p>
+        <label for="type">Type:</label>
+        <input id="type" type="text" name ="type"/><br/>
+        <select  name="type">
+            <option value="Travel">
+                Travel
+            </option>
+            <option value="Training">
+                Training
+            </option>
+            <option value="Meals">
+                Meals
+            </option>
+        </select><br/>
+    </p>
+
+    <input type="submit" value="Submit"/>
+</form>
+</body>
+</html>
