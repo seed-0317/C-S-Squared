@@ -1,4 +1,4 @@
-package DAO;
+package dao;
 
 import model.Reimbursement;
 import java.util.List;

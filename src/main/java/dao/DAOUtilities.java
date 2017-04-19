@@ -28,6 +28,7 @@ public class DAOUtilities {
     }
 
 
+
     static synchronized Connection getConnection() throws SQLException {
         if (connection == null) {
             try {
