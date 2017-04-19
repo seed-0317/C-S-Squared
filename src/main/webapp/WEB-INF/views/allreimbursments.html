@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>C S Squared Reimbursments</title>
+
+    <link rel="stylesheet" type="text/css" href="mystyles.css" media="screen" />
+
+</head>
+<body>
+
+<h1>C S Squared reimbusments listing</h1>
+
+
+<table>
+    <thead>
+    <tr>
+        <th class="text-center">ID</th>
+        <th class="text-center">Amount</th>
+        <th class="text-center">Description</th>
+        <th class="text-center">Receipt</th>
+        <th class="text-center">Submitted</th>
+        <th class="text-center">Resolved</th>
+        <th class="text-center">Author</th>
+        <th class="text-center">Resolver</th>
+        <th class="text-center">RS_ID</th>
+        <th class="text-center">RT_ID</th>
+    </tr>
+    </thead>
+    <tbody>
+    <forEach var="reimbursments" items="${reimbursments}">
+        <tr>
+            <td><out value="${reimbursments.id}" /></td>
+            <td><out value="${reimbursments.amount}" /></td>
+            <td><out value="${reimbursments.description}" /></td>
+            <td><out value="${reimbursments.receipt}" /></td>
+            <td><out value="${reimbursments.submitted}" /></td>
+            <td><out value="${reimbursments.resolved}" /></td>
+            <td><out value="${reimbursments.author}" /></td>
+            <td><out value="${reimbursments.resolver}" /></td>
+            <td><out value="${reimbursments.rs_id}" /></td>
+            <td><out value="${reimbursments.rt_id}" /></td>
+
+        </tr>
+    </forEach>
+    </tbody>
+</table>
+
+</body>
+</html>
