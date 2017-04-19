@@ -1,12 +1,10 @@
-package DAO;
+package dao;
 
-
-import model.Reimbursement;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.List;
+
 
 /**
  * Created by uzh051 on 4/18/17.
@@ -18,16 +16,17 @@ public class DAOUtilities {
     private static final String CONNECTION_PASSWORD = System.getenv("CONNECTIONPASSWORD");
     private static final String URL = System.getenv("CONNECTIONURL");
 
-    private static ReimbursmentsDAO reimbursmentsDAO;
+    private static UsersDAOImpl usersDAOImpl;
     private static Connection connection;
 
-    public static synchronized ReimbursmentsDAO getReimbursmentsDAO() {
+    public static synchronized UsersDAO getUsersDAO() {
 
-        if (reimbursmentsDAO == null) {
-            reimbursmentsDAO = new ReimbursmentsDAO();
+        if (usersDAOImpl == null) {
+            usersDAOImpl= new UsersDAOImpl();
         }
-        return reimbursmentsDAO;
+        return usersDAOImpl;
     }
+
 
     static synchronized Connection getConnection() throws SQLException {
         if (connection == null) {
