@@ -16,34 +16,18 @@ public class DAOUtilities {
     private static final String CONNECTION_PASSWORD = System.getenv("CONNECTIONPASSWORD");
     private static final String URL = System.getenv("CONNECTIONURL");
 
-    private static UsersDAOImpl usersDAOImpl;
-    private static Connection connection;
+    public static Connection createConnection() {
 
-    public static synchronized UsersDAO getUsersDAO() {
-
-        if (usersDAOImpl == null) {
-            usersDAOImpl= new UsersDAOImpl();
-        }
-        return usersDAOImpl;
-    }
-
-
-    static synchronized Connection getConnection() throws SQLException {
-        if (connection == null) {
-            try {
-                Class.forName("org.postgresql.Driver");
-            } catch (ClassNotFoundException e) {
-                System.out.println("Could not register driver!");
-                e.printStackTrace();
-            }
+        Connection connection = null;
+        try {
+            Class.forName("org.postgresql.Driver");
             connection = DriverManager.getConnection(URL, CONNECTION_USERNAME, CONNECTION_PASSWORD);
-        }
-
-        //If connection was closed then retrieve a new connection
-        if (connection.isClosed()){
-            System.out.println("getting new connection...");
-            connection = DriverManager.getConnection(URL, CONNECTION_USERNAME, CONNECTION_PASSWORD);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
         }
         return connection;
     }
+
 }

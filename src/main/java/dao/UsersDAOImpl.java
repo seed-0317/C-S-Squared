@@ -17,48 +17,48 @@ public class UsersDAOImpl implements UsersDAO {
         Connection connection =null;
         Statement stmt = null;
 
-        try {
-            connection = DAOUtilities.getConnection();
-
-            stmt = connection.createStatement();
-
-            String sql = "SELECT * FROM csssquared.ers_users";
-
-            ResultSet rs = stmt.executeQuery(sql);
-
-            while (rs.next()) {
-
-                User a = new User();
-
-                a.setId(rs.getInt("id"));
-                a.setUserName(rs.getString("userName"));
-                a.setFirstName(rs.getString("firstName"));
-                a.setLastName(rs.getString("lastName"));
-                a.seteMail(rs.getString("eMail"));
-                a.setrID(rs.getInt("rId"));
-
-                users.add(a);
-
-            }
-
-            }
-            catch (SQLException e){
-
-            e.printStackTrace();
-        } finally {
-
-                try {
-                    if (stmt!=null){
-                        stmt.close();
-                    }
-                    if (connection!=null){
-                        connection.close();
-                    }
-                } catch (SQLException e){
-                    e.printStackTrace();
-                }
-
-        }
+//        try {
+//            connection = DAOUtilities.getConnection();
+//
+//            stmt = connection.createStatement();
+//
+//            String sql = "SELECT * FROM csssquared.ers_users";
+//
+//            ResultSet rs = stmt.executeQuery(sql);
+//
+//            while (rs.next()) {
+//
+//                User a = new User();
+//
+//                a.setId(rs.getInt("id"));
+//                a.setUserName(rs.getString("userName"));
+//                a.setFirstName(rs.getString("firstName"));
+//                a.setLastName(rs.getString("lastName"));
+//                a.seteMail(rs.getString("eMail"));
+//                a.setrID(rs.getInt("rId"));
+//
+//                users.add(a);
+//
+//            }
+//
+//            }
+//            catch (SQLException e){
+//
+//            e.printStackTrace();
+//        } finally {
+//
+//                try {
+//                    if (stmt!=null){
+//                        stmt.close();
+//                    }
+//                    if (connection!=null){
+//                        connection.close();
+//                    }
+//                } catch (SQLException e){
+//                    e.printStackTrace();
+//                }
+//
+//        }
 
         return users;
     }
@@ -70,42 +70,42 @@ public class UsersDAOImpl implements UsersDAO {
         PreparedStatement stmt = null;
         int success = 0;
 
-        try {
-
-            connection = DAOUtilities.getConnection();
-            String sql = "INSERT INTO csssquared.ers_users VALUES(?,?,?,?,?,?)";
-
-            //Setup prepared statements
-            stmt = connection.prepareStatement(sql);
-
-            // Add parameters from user into PreparedStatement
-            stmt.setInt(1, user.getId());
-            stmt.setString(2,user.getUserName());
-            stmt.setString(3,user.getFirstName());
-            stmt.setString(4,user.getLastName());
-            stmt.setString(5,user.geteMail());
-            stmt.setInt(6,user.getrID());
-
-            success = stmt.executeUpdate();
-        } catch (SQLException e){
-
-            e.printStackTrace();
-
-        } finally {
-
-            try {
-
-                if (stmt !=null)
-                    stmt.close();
-                if (connection != null)
-                    connection.close();
-            } catch (SQLException  e){
-                e.printStackTrace();
-
-            }
-
-
-        }
+//        try {
+//
+//            connection = DAOUtilities.getConnection();
+//            String sql = "INSERT INTO csssquared.ers_users VALUES(?,?,?,?,?,?)";
+//
+//            //Setup prepared statements
+//            stmt = connection.prepareStatement(sql);
+//
+//            // Add parameters from user into PreparedStatement
+//            stmt.setInt(1, user.getId());
+//            stmt.setString(2,user.getUserName());
+//            stmt.setString(3,user.getFirstName());
+//            stmt.setString(4,user.getLastName());
+//            stmt.setString(5,user.geteMail());
+//            stmt.setInt(6,user.getrID());
+//
+//            success = stmt.executeUpdate();
+//        } catch (SQLException e){
+//
+//            e.printStackTrace();
+//
+//        } finally {
+//
+//            try {
+//
+//                if (stmt !=null)
+//                    stmt.close();
+//                if (connection != null)
+//                    connection.close();
+//            } catch (SQLException  e){
+//                e.printStackTrace();
+//
+//            }
+//
+//
+//        }
 
         if (success == 0) {
 
@@ -114,5 +114,33 @@ public class UsersDAOImpl implements UsersDAO {
         }
 
 
+    }
+
+    @Override
+    public User getUser(String username) {
+        User user = null;
+        try(Connection connection = DAOUtilities.createConnection();) {
+            PreparedStatement preparedstmt = connection.prepareStatement("SELECT  * FROM csssquared.ers_users WHERE u_username=?");
+            preparedstmt.setString(1,username);
+            ResultSet resultSet = preparedstmt.executeQuery();
+
+            if (resultSet.next()) {
+
+                user = new User();
+
+                user.setId(resultSet.getInt("u_id"));
+                user.setUserName(resultSet.getString("u_username"));
+                user.setFirstName(resultSet.getString("u_firstname"));
+                user.setLastName(resultSet.getString("u_lastname"));
+                user.seteMail(resultSet.getString("u_email"));
+                user.setrID(resultSet.getInt("ur_id"));
+
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return user;
     }
 }
