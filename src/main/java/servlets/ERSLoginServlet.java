@@ -20,8 +20,7 @@ import java.util.List;
 @WebServlet(urlPatterns = "/login")
 public class ERSLoginServlet extends HttpServlet {
 
-    private  static final long serialVersionUID = 1L;
-
+    private static final long serialVersionUID = 1L;
 
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -35,39 +34,35 @@ public class ERSLoginServlet extends HttpServlet {
 //        request.getSession().setAttribute("users", users);
 
 
-
-
-        request.getRequestDispatcher("/WEB-INF/views/login.html").forward(request,response);
+        request.getRequestDispatcher("/WEB-INF/views/login.html").forward(request, response);
 
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String username = request.getParameter("name");
-        System.out.println("Hi "+ username);
+        System.out.println("Hi " + username);
 
         UsersDAO dao = new UsersDAOImpl();
         User temp = dao.getUser(username);
 
 
-        if( temp != null){
+        if (temp.getUserName().equals(username)) {
 
 //            request.setAttribute("dog", username);
 //            HttpSession session = request.getSession();
 //            session.setAttribute("dog", username);
 
-            System.out.println("the temp object null");
-
-            HttpSession session =  request.getSession();
+            HttpSession session = request.getSession();
             session.setAttribute("user", username);
             response.sendRedirect("home");
-        }
-        else {
+        } else {
 
-            response.sendRedirect("login");
+                // user does not exist in database
+                response.sendRedirect("login");
+
         }
 
     }
-
-
 }
+

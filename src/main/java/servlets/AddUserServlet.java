@@ -36,26 +36,27 @@ public class AddUserServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException {
         //Get Parameters
-       int id = Integer.parseInt(request.getParameter("id"));
-
-        String name = request.getParameter("userName");
-        String firstname = request.getParameter("firstName");
-        String lastname = request.getParameter("lastName");
-        String mail = request.getParameter("eMail");
-
-        int rid = Integer.parseInt(request.getParameter("rID"));
-
-
-
-        User userToSave = new User(
-
-                id,
-                name,
-                firstname,
-                lastname,
-                mail,
-                rid
-        );
+//       int id = Integer.parseInt(request.getParameter("id"));
+//
+//        String name = request.getParameter("userName");
+//        String firstname = request.getParameter("firstName");
+//        String lastname = request.getParameter("lastName");
+//        String mail = request.getParameter("eMail");
+//        String role = request.getParameter("role");
+//
+//
+//
+//
+//        User userToSave = new User(
+//
+//                id,
+//                name,
+//                firstname,
+//                lastname,
+//                mail,
+//                role
+//
+//        );
 
         //Call DAO method
 //        UsersDAO dao = DAOUtilities.getUsersDAO();
