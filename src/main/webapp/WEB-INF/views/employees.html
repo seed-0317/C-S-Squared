@@ -20,12 +20,13 @@
         <th class="text-center">Last</th>
         <th class="text-center">Email</th>
         <th class="text-center">Role ID</th>
-        <th class="text-center">Role</th>
+        <!--<th class="text-center">Role</th>-->
     </tr>
 </thead>
     <tbody>
     <forEach var="employee" items="${users}">
         <tr>
+
             <td><out value="${employee.ID}" /></td>
             <td><out value="${employee.username}" /></td>
             <td><out value="${employee.firstname}" /></td>

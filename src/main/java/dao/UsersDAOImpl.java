@@ -1,6 +1,7 @@
 package dao;
 
 import model.User;
+import model.UserRoles;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -14,30 +15,34 @@ public class UsersDAOImpl implements UsersDAO {
     @Override
     public List<User> getAllUser() {
         List<User> users= new ArrayList<>();
-        Connection connection =null;
-        Statement stmt = null;
+        Connection connection = null;
+        PreparedStatement preparedstmt = null;
+        int success = 0;
 
         try {
-            connection = DAOUtilities.getConnection();
+            connection = DAOUtilities.createConnection();
 
-            stmt = connection.createStatement();
 
-            String sql = "SELECT * FROM csssquared.ers_users";
+            String sql =  "SELECT a.u_id, a.u_username, a.u_firstname, a.u_lastname, a.u_email ";
+            sql = sql + "  ,b.ur_id, b.ur_role from csssquared.ers_users a join csssquared.ers_user_roles b on b.ur_id = a.ur_id";
 
-            ResultSet rs = stmt.executeQuery(sql);
+            ResultSet rs = preparedstmt.executeQuery(sql);
 
             while (rs.next()) {
 
-                User a = new User();
+                User user = new User();
 
-                a.setId(rs.getInt("id"));
-                a.setUserName(rs.getString("userName"));
-                a.setFirstName(rs.getString("firstName"));
-                a.setLastName(rs.getString("lastName"));
-                a.seteMail(rs.getString("eMail"));
-                a.setrID(rs.getInt("rId"));
+                user.setId(rs.getInt("id"));
+                user.setUserName(rs.getString("userName"));
+                user.setFirstName(rs.getString("firstName"));
+                user.setLastName(rs.getString("lastName"));
+                user.seteMail(rs.getString("eMail"));
+                UserRoles roles = new UserRoles();
+                roles.setUrId(rs.getInt("ur_id"));
+                roles.setUrRole(rs.getString("ur_role"));
+                user.setRole(roles);
 
-                users.add(a);
+                users.add(user);
 
             }
 
@@ -48,8 +53,8 @@ public class UsersDAOImpl implements UsersDAO {
         } finally {
 
                 try {
-                    if (stmt!=null){
-                        stmt.close();
+                    if (preparedstmt!=null){
+                        preparedstmt.close();
                     }
                     if (connection!=null){
                         connection.close();
@@ -67,26 +72,27 @@ public class UsersDAOImpl implements UsersDAO {
     public void saveUser(User user) throws Exception {
 
         Connection connection = null;
-        PreparedStatement stmt = null;
+        PreparedStatement preparedstmt = null;
         int success = 0;
 
         try {
 
-            connection = DAOUtilities.getConnection();
-            String sql = "INSERT INTO csssquared.ers_users VALUES(?,?,?,?,?,?)";
+            connection = DAOUtilities.createConnection();
+            String sql =  "UPDATE erawesome.ers_users set u_username = ?, u_firstname = ?, u_lastname = ?, ";
+                   sql = sql + "u_email = ?, ur_id = ? WHERE u_id = ?";
 
             //Setup prepared statements
-            stmt = connection.prepareStatement(sql);
+            preparedstmt = connection.prepareStatement(sql);
 
             // Add parameters from user into PreparedStatement
-            stmt.setInt(1, user.getId());
-            stmt.setString(2,user.getUserName());
-            stmt.setString(3,user.getFirstName());
-            stmt.setString(4,user.getLastName());
-            stmt.setString(5,user.geteMail());
-            stmt.setInt(6,user.getrID());
+            preparedstmt.setInt(1, user.getId());
+            preparedstmt.setString(2,user.getUserName());
+            preparedstmt.setString(3,user.getFirstName());
+            preparedstmt.setString(4,user.getLastName());
+            preparedstmt.setString(5,user.geteMail());
+            preparedstmt.setInt(6,user.getRole().getUrId());
 
-            success = stmt.executeUpdate();
+            success = preparedstmt.executeUpdate();
         } catch (SQLException e){
 
             e.printStackTrace();
@@ -95,8 +101,8 @@ public class UsersDAOImpl implements UsersDAO {
 
             try {
 
-                if (stmt !=null)
-                    stmt.close();
+                if (preparedstmt !=null)
+                    preparedstmt.close();
                 if (connection != null)
                     connection.close();
             } catch (SQLException  e){
@@ -109,10 +115,50 @@ public class UsersDAOImpl implements UsersDAO {
 
         if (success == 0) {
 
-            throw new Exception("Insert Use Failed" + user);
+            throw new Exception("Insert User Failed" + user);
 
         }
 
 
+    }
+
+    @Override
+    public User getUser(String username) {
+
+        Connection connection = null;
+        PreparedStatement preparedstmt = null;
+        User user = new User();
+
+
+        try{
+                connection = DAOUtilities.createConnection();
+                String sql =  "SELECT a.u_id, a.u_username, a.u_firstname, a.u_lastname, a.u_email ";
+                sql = sql + "  ,b.ur_id, b.ur_role from csssquared.ers_users a join csssquared.ers_user_roles b on b.ur_id = a.ur_id";
+                sql = sql +  " where a.u_username = ?";
+                preparedstmt = connection.prepareStatement(sql);
+
+                preparedstmt.setString(1, username);
+                ResultSet resultSet = preparedstmt.executeQuery();
+
+                while (resultSet.next()) {
+                    user.setId(resultSet.getInt("u_id"));
+                    user.setUserName(resultSet.getString("u_username"));
+                    user.setFirstName(resultSet.getString("u_firstname"));
+                    user.setLastName(resultSet.getString("u_lastname"));
+                    user.seteMail(resultSet.getString("u_email"));
+
+                    UserRoles roles = new UserRoles();
+                    roles.setUrId(resultSet.getInt("ur_id"));
+                    roles.setUrRole(resultSet.getString("ur_role"));
+                    user.setRole(roles);
+                }
+
+            } catch (SQLException e) {
+
+                e.printStackTrace();
+        }
+
+
+        return user;
     }
 }

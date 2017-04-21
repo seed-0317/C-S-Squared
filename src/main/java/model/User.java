@@ -11,62 +11,66 @@ public class User {
     private String firstName;
     private String lastName;
     private String eMail;
-    private int rID;
-    private String role;
+    private UserRoles role;
+
+    public User(){
+
+    }
+
+    public User(int id, String userName, String firstName, String lastName, String eMail, UserRoles role) {
+        this.id = id;
+        this.userName = userName;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.eMail = eMail;
+        this.role = role;
+    }
 
     public int getId() {
         return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getUserName() {
         return userName;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
     public String getFirstName() {
         return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
     }
 
     public String getLastName() {
         return lastName;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
     public String geteMail() {
         return eMail;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public UserRoles getRole(){
+        return role;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public void seteMail(String eMail) {
         this.eMail = eMail;
     }
 
-    public int getrID() {
-        return rID;
-    }
-
-    public void setrID(int rID) {
-        this.rID = rID;
-    }
-
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
+    public void setRole(UserRoles role){
         this.role = role;
     }
 
@@ -78,7 +82,6 @@ public class User {
         User user = (User) o;
 
         if (getId() != user.getId()) return false;
-        if (getrID() != user.getrID()) return false;
         if (!getUserName().equals(user.getUserName())) return false;
         if (getFirstName() != null ? !getFirstName().equals(user.getFirstName()) : user.getFirstName() != null)
             return false;
@@ -95,9 +98,20 @@ public class User {
         result = 31 * result + (getFirstName() != null ? getFirstName().hashCode() : 0);
         result = 31 * result + (getLastName() != null ? getLastName().hashCode() : 0);
         result = 31 * result + (geteMail() != null ? geteMail().hashCode() : 0);
-        result = 31 * result + getrID();
         result = 31 * result + (getRole() != null ? getRole().hashCode() : 0);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", userName='" + userName + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", eMail='" + eMail + '\'' +
+                ", role='" + role + '\'' +
+                '}';
     }
 }
 

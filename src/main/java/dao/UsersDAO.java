@@ -16,4 +16,7 @@ public interface UsersDAO {
 
     void saveUser(User userToSave) throws Exception;
 
+    User getUser (String username);
+
+
 }
