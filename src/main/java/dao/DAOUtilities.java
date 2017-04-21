@@ -18,9 +18,10 @@ public class DAOUtilities {
 
     public static Connection createConnection() {
 
+
         Connection connection = null;
         try {
-            Class.forName("org.postgresql.Driver");
+            Class.forName("org.postgresql.Driver"); 
             connection = DriverManager.getConnection(URL, CONNECTION_USERNAME, CONNECTION_PASSWORD);
         } catch (SQLException e) {
             e.printStackTrace();

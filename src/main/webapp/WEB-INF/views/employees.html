@@ -24,15 +24,18 @@
     </tr>
 </thead>
     <tbody>
+    <forEach var="employee" items="${users}">
         <tr>
-            <td>id</td>
-            <td>uname</td>
-            <td>first name</td>
-            <td>last name</td>
-            <td>email</td>
-            <td>role id</td>
-            <!--<td>role</td>-->
+
+            <td><out value="${employee.ID}" /></td>
+            <td><out value="${employee.username}" /></td>
+            <td><out value="${employee.firstname}" /></td>
+            <td><out value="${employee.lastname}" /></td>
+            <td><out value="${emmployee.email}" /></td>
+            <td><out value="${employee.roleid}" /></td>
+            <td><out value="${employee.role}" /></td>
         </tr>
+    </forEach>
     </tbody>
 </table>
 
