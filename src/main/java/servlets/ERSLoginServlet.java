@@ -47,7 +47,7 @@ public class ERSLoginServlet extends HttpServlet {
         User temp = dao.getUser(username);
 
 
-        if (temp.getUserName().equals(username)) {
+        if (temp != null) {
 
 //            request.setAttribute("dog", username);
 //            HttpSession session = request.getSession();

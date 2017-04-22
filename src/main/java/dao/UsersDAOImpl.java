@@ -127,8 +127,7 @@ public class UsersDAOImpl implements UsersDAO {
 
         Connection connection = null;
         PreparedStatement preparedstmt = null;
-        User user = new User();
-
+        User user = null;
 
         try{
                 connection = DAOUtilities.createConnection();
@@ -140,7 +139,8 @@ public class UsersDAOImpl implements UsersDAO {
                 preparedstmt.setString(1, username);
                 ResultSet resultSet = preparedstmt.executeQuery();
 
-                while (resultSet.next()) {
+                if (resultSet.next()) {
+                    user = new User();
                     user.setId(resultSet.getInt("u_id"));
                     user.setUserName(resultSet.getString("u_username"));
                     user.setFirstName(resultSet.getString("u_firstname"));
