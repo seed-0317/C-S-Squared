@@ -34,7 +34,7 @@ public class ERSLoginServlet extends HttpServlet {
 //        request.getSession().setAttribute("users", users);
 
 
-        request.getRequestDispatcher("/WEB-INF/views/login.html").forward(request, response);
+        request.getRequestDispatcher("/views/login.html").forward(request, response);
 
     }
 

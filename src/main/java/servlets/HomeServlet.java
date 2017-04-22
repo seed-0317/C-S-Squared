@@ -17,7 +17,7 @@ public class HomeServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("/WEB-INF/views/home.html").forward(request, response);
+        request.getRequestDispatcher("/views/home.html").forward(request, response);
 
     }
 }
