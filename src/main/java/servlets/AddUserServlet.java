@@ -29,7 +29,7 @@ public class AddUserServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException {
         request.setAttribute("name", request.getParameter("username"));
-        request.getRequestDispatcher("/WEB-INF/views/employees.html").forward(request, response);
+        request.getRequestDispatcher("/views/employees.html").forward(request, response);
     }
 
     @Override
