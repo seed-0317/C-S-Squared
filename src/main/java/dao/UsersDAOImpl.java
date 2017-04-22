@@ -14,59 +14,28 @@ public class UsersDAOImpl implements UsersDAO {
 
     @Override
     public List<User> getAllUser() {
-        List<User> users= new ArrayList<>();
-        Connection connection = null;
-        PreparedStatement preparedstmt = null;
-        int success = 0;
+        List<User> users = new ArrayList<>();
 
-        try {
-            connection = DAOUtilities.createConnection();
-
-
-            String sql =  "SELECT a.u_id, a.u_username, a.u_firstname, a.u_lastname, a.u_email ";
-            sql = sql + "  ,b.ur_id, b.ur_role from csssquared.ers_users a join csssquared.ers_user_roles b on b.ur_id = a.ur_id";
-
-            ResultSet rs = preparedstmt.executeQuery(sql);
+        try (Connection connection = DAOUtilities.createConnection();){
+            PreparedStatement stmt1 = connection.prepareStatement("select * from csssquared.ers_users");
+            ResultSet rs = stmt1.executeQuery();
 
             while (rs.next()) {
-
-                User user = new User();
-
-                user.setId(rs.getInt("id"));
-                user.setUserName(rs.getString("userName"));
-                user.setFirstName(rs.getString("firstName"));
-                user.setLastName(rs.getString("lastName"));
-                user.seteMail(rs.getString("eMail"));
-                UserRoles roles = new UserRoles();
-                roles.setUrId(rs.getInt("ur_id"));
-                roles.setUrRole(rs.getString("ur_role"));
-                user.setRole(roles);
-
-                users.add(user);
-
+                User newUser = new User();
+                newUser.setId(rs.getInt("u_id"));
+                newUser.setUserName(rs.getString("u_username"));
+                newUser.setFirstName(rs.getString("u_firstname"));
+                newUser.setLastName(rs.getString("u_lastname"));
+                newUser.seteMail(rs.getString("u_email"));
+                newUser.setId(rs.getInt("ur_id"));
+                users.add(newUser);
             }
-
-            }
-            catch (SQLException e){
-
+        } catch (SQLException e) {
             e.printStackTrace();
-        } finally {
-
-                try {
-                    if (preparedstmt!=null){
-                        preparedstmt.close();
-                    }
-                    if (connection!=null){
-                        connection.close();
-                    }
-                } catch (SQLException e){
-                    e.printStackTrace();
-                }
-
         }
-
         return users;
     }
+
 
     @Override
     public void saveUser(User user) throws Exception {
@@ -127,8 +96,7 @@ public class UsersDAOImpl implements UsersDAO {
 
         Connection connection = null;
         PreparedStatement preparedstmt = null;
-        User user = new User();
-
+        User user = null;
 
         try{
                 connection = DAOUtilities.createConnection();
@@ -140,7 +108,8 @@ public class UsersDAOImpl implements UsersDAO {
                 preparedstmt.setString(1, username);
                 ResultSet resultSet = preparedstmt.executeQuery();
 
-                while (resultSet.next()) {
+                if (resultSet.next()) {
+                    user = new User();
                     user.setId(resultSet.getInt("u_id"));
                     user.setUserName(resultSet.getString("u_username"));
                     user.setFirstName(resultSet.getString("u_firstname"));

@@ -34,20 +34,20 @@ public class ERSLoginServlet extends HttpServlet {
 //        request.getSession().setAttribute("users", users);
 
 
-        request.getRequestDispatcher("/WEB-INF/views/login.html").forward(request, response);
+        request.getRequestDispatcher("/views/login.html").forward(request, response);
 
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String username = request.getParameter("name");
-        System.out.println("Hi " + username);
+ //       System.out.println("Hi " + username);
 
         UsersDAO dao = new UsersDAOImpl();
         User temp = dao.getUser(username);
 
 
-        if (temp.getUserName().equals(username)) {
+        if (temp != null) {
 
 //            request.setAttribute("dog", username);
 //            HttpSession session = request.getSession();
