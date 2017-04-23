@@ -28,23 +28,22 @@
     </tr>
     </thead>
     <tbody>
-    <forEach var="reimbursments" items="${reimbursments}">
+    <#List reimbursment as reimbursments">
         <tr>
-            <td><out value="${reimbursments.id}" /></td>
-            <td><out value="${reimbursments.amount}" /></td>
-            <td><out value="${reimbursments.description}" /></td>
-            <td><out value="${reimbursments.receipt}" /></td>
-            <td><out value="${reimbursments.submitted}" /></td>
-            <td><out value="${reimbursments.resolved}" /></td>
-            <td><out value="${reimbursments.author}" /></td>
-            <td><out value="${reimbursments.resolver}" /></td>
-            <td><out value="${reimbursments.rs_id}" /></td>
-            <td><out value="${reimbursments.rt_id}" /></td>
+            <td>${reimbursments.id}</td>
+            <td>${reimbursments.amount}</td>
+            <td>${reimbursments.description}</td>
+            <td>${reimbursments.receipt}</td>
+            <td>${reimbursments.submitted}</td>
+            <td>{reimbursments.resolved}</td>
+            <td>${reimbursments.author}</td>
+            <td>${reimbursments.resolver}</td>
+            <td>${reimbursments.rs_id}</td>
+            <td>${reimbursments.rt_id}</td>
 
         </tr>
-    </forEach>
+    </#List>
     </tbody>
 </table>
-
 </body>
 </html>
