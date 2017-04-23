@@ -9,7 +9,8 @@ public class Test {
     public static void main(String[] args) {
         Connection connection = ConnectionFactory.createConnection();
         try {
-            PreparedStatement stmt1 = connection.prepareStatement("UPDATE csssquared.ers_reimbursements SET r_id = 3, r_amount=400, u_id_author = 1,rs_id = 1, rt_id = 1 ");
+            PreparedStatement stmt1 = connection.prepareStatement("Insert INTO csssquared.ers_reimbursements " +
+                    "(r_id,r_amount,u_id_author,rs_id, rt_id) VALUES (2, 400, 1, 1, 1)");
             ResultSet rs = stmt1.executeQuery();
             System.out.println(rs);
         } catch (SQLException e) {
