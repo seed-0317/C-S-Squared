@@ -16,7 +16,7 @@ public class UsersDAOImpl implements UsersDAO {
     public List<User> getAllUser() {
         List<User> users = new ArrayList<>();
 
-        try (Connection connection = DAOUtilities.createConnection();){
+        try (Connection connection = DAOUtilities.createConnection()){
             PreparedStatement stmt1 = connection.prepareStatement("select * from csssquared.ers_users");
             ResultSet rs = stmt1.executeQuery();
 
@@ -62,7 +62,7 @@ public class UsersDAOImpl implements UsersDAO {
             preparedstmt.setInt(6,user.getRole().getUrId());
 
             success = preparedstmt.executeUpdate();
-        } catch (SQLException e){
+        }catch (SQLException e){
 
             e.printStackTrace();
 
