@@ -13,8 +13,8 @@
     <ul class="nav nav-pills">
         <li role="presentation"><a href="/home">Home</a></li>
         <li role="presentation"><a href="/ListUsers">User List</a></li>
-        <li role="presentation"><a href="#">Reimbursements List</a></li>
-        <li role="presentation"><a href="#">Submit Reimbursement</a></li>
+        <li role="presentation"><a href="/ListRis">Reimbursements List</a></li>
+        <li role="presentation"><a href="/createReimbursement">Submit Reimbursement</a></li>
         <li role="presentation"><a href="/login">LogOut</a></li>
     </ul>
 </div>
@@ -37,7 +37,7 @@
     </tr>
     </thead>
     <tbody>
-    <#list reimbursment as reimbursments>
+    <#list reimbersment as reimbursments>
         <tr>
             <td>${reimbursments.id}</td>
             <td>${reimbursments.amount}</td>
@@ -46,8 +46,8 @@
             <td>${reimbursments.resolved}</td>
             <td>${reimbursments.author}</td>
             <td>${reimbursments.resolver}</td>
-            <td>${reimbursments.rs_id}</td>
-            <td>${reimbursments.rt_id}</td>
+            <td>${reimbursments.typeId}</td>
+            <td>${reimbursments.statusID}</td>
 
         </tr>
     </#list>
