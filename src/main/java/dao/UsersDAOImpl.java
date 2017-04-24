@@ -59,7 +59,7 @@ public class UsersDAOImpl implements UsersDAO {
             preparedstmt.setString(3,user.getFirstName());
             preparedstmt.setString(4,user.getLastName());
             preparedstmt.setString(5,user.geteMail());
-            preparedstmt.setInt(6,user.getRole().getUrId());
+            preparedstmt.setInt(6,user.getRole());
 
             success = preparedstmt.executeUpdate();
         }catch (SQLException e){
@@ -100,9 +100,9 @@ public class UsersDAOImpl implements UsersDAO {
 
         try{
                 connection = DAOUtilities.createConnection();
-                String sql =  "SELECT a.u_id, a.u_username, a.u_firstname, a.u_lastname, a.u_email ";
-                sql = sql + "  ,b.ur_id, b.ur_role from csssquared.ers_users a join csssquared.ers_user_roles b on b.ur_id = a.ur_id";
-                sql = sql +  " where a.u_username = ?";
+                String sql =  "SELECT u_id, u_username, u_firstname, u_lastname, u_email ";
+                sql = sql + "   from csssquared.ers_users";
+                sql = sql +  " where u_username = ?";
                 preparedstmt = connection.prepareStatement(sql);
 
                 preparedstmt.setString(1, username);
@@ -119,7 +119,7 @@ public class UsersDAOImpl implements UsersDAO {
                     UserRoles roles = new UserRoles();
                     roles.setUrId(resultSet.getInt("ur_id"));
                     roles.setUrRole(resultSet.getString("ur_role"));
-                    user.setRole(roles);
+ //                   user.setRole(roles);
                 }
 
             } catch (SQLException e) {

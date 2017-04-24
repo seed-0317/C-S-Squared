@@ -2,29 +2,38 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>C S Squared Reimbursments</title>
-
     <link rel="stylesheet" type="text/css" href="mystyles.css" media="screen" />
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <title>Employee Web Page</title>
 
 </head>
 <body>
+<h1>C S Squared System</h1>
+<div class = "well well-sm">
+    <ul class="nav nav-pills">
+        <li role="presentation"><a href="/home">Home</a></li>
+        <li role="presentation"><a href="/ListUsers">User List</a></li>
+        <li role="presentation"><a href="#">Reimbursements List</a></li>
+        <li role="presentation"><a href="#">Submit Reimbursement</a></li>
+        <li role="presentation"><a href="/login">LogOut</a></li>
+    </ul>
+</div>
 
-<h1>C S Squared reimbusments listing</h1>
-
-
-<table>
-    <thead>
-    <tr>
-        <th class="text-center">ID</th>
-        <th class="text-center">Amount</th>
-        <th class="text-center">Description</th>
-        <th class="text-center">Receipt</th>
-        <th class="text-center">Submitted</th>
-        <th class="text-center">Resolved</th>
-        <th class="text-center">Author</th>
-        <th class="text-center">Resolver</th>
-        <th class="text-center">RS_ID</th>
-        <th class="text-center">RT_ID</th>
+<h2>C S Squared Reimbursement Listing</h2>
+<div class=table-responsive>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+        <td>ID</td>
+        <td>Amount</td>
+        <td>Description</td>
+        <td>Receipt</td>
+        <td>Submitted</td>
+        <td>Resolved</td>
+        <td>Author</td>
+        <td>Resolver</td>
+        <td>RS_ID</td>
+        <td>RT_ID</td>
     </tr>
     </thead>
     <tbody>
