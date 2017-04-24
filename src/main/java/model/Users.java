@@ -1,10 +1,6 @@
 package model;
 
-import com.sun.tools.internal.xjc.reader.xmlschema.bindinfo.BIConversion;
 
-/**
- * Created by nof191 on 4/17/17.
- */
 
 public class Users {
 
