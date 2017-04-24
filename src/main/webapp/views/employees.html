@@ -8,8 +8,49 @@
 
 </head>
 <body>
+<div>
+    <ul class="nav nav-pills">
+        <li role="presentation"><a href="/home">Home</a></li>
+        <li role="presentation"><a href="/ListUsers">User List</a></li>
+        <li role="presentation"><a href="#">Reimbursements List</a></li>
+        <li role="presentation"><a href="#">Submit Reimbursement</a></li>
+        <li role="presentation"><a href="/login">LogOut</a></li>
+    </ul>
+</div>
+
 <h1>C S Squared Employee Listing</h1>
 
+
+
+<div class=table-responsive">
+    <table class="table">
+        <thead>
+        <tr>
+            <td>ID</td>
+            <td>Username</td>
+            <td>First Name</td>
+            <td>Last Name</td>
+            <td>eMail</td>
+            <td>Role</td>
+        </tr>
+        </thead>
+        <tbody>
+        <#list users as employees>
+            <tr>
+                <td>${employees.id}</td>
+                <td>${employees.userName}</td>
+                <td>${employees.firstName}</td>
+                <td>${employees.lastName}</td>
+                <td>${employees.eMail}</td>
+                <td>${employees.role}</td>
+            </tr>
+        </#list>
+        </tbody>
+    </table>
+
+
+</div>
+<!--
 <div class="container">
     <div class="row">
         <div class="col-xs-12 col-sm-2">ID</div>
@@ -31,7 +72,7 @@
         </div>
     </#list>
 </div>
-
+-->
 
 <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
@@ -39,5 +80,4 @@
 </body>
 </html>
 
-</body>
-</html>
+

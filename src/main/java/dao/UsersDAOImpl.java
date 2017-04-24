@@ -102,7 +102,7 @@ public class UsersDAOImpl implements UsersDAO {
                 connection = DAOUtilities.createConnection();
                 String sql =  "SELECT u_id, u_username, u_firstname, u_lastname, u_email ";
                 sql = sql + "   from csssquared.ers_users";
-                sql = sql +  " where a.u_username = ?";
+                sql = sql +  " where u_username = ?";
                 preparedstmt = connection.prepareStatement(sql);
 
                 preparedstmt.setString(1, username);
