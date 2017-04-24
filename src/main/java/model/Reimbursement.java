@@ -38,7 +38,7 @@ public class Reimbursement {
         this.status = status;
     }
 
-    public Reimbursement(int id) {
+    public Reimbursement() {
         this.id = id;
     }
 
