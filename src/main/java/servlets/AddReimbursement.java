@@ -14,7 +14,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/test")
+import static dao.Test.addTime;
+
+@WebServlet("/createReimbursement")
 public class AddReimbursement extends HttpServlet {
 
     Reimbursement reimbursement = new Reimbursement();
@@ -26,47 +28,33 @@ public class AddReimbursement extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // read form fields
-        int r_id = 3;
+        String r_id = request.getParameter("id");
         String amount = request.getParameter("amount");
         String u_id = request.getParameter("id_author");
-        int rs_id = 1;
+        String rs_id = request.getParameter("rs_id");
         String rt_id = request.getParameter("rt_id");
+        String descr = request.getParameter("description");
+        String id_resolver = request.getParameter("id_resolver");
 
-        reimbursement.setId(r_id);
+        reimbursement.setId(Integer.parseInt(r_id));
         reimbursement.setAmount(Float.parseFloat(amount));
         reimbursement.setAuthor(Integer.parseInt(u_id));
-        reimbursement.setStatusID(rs_id);
+        reimbursement.setStatusID(Integer.parseInt(rs_id));
         reimbursement.setTypeId(Integer.parseInt(rt_id));
+        reimbursement.setDescription(descr);
+        reimbursement.setResolver(Integer.parseInt(id_resolver));
 
         System.out.println("r_id: " + reimbursement.getId() );
         System.out.println("amount: " + reimbursement.getAmount());
         System.out.println("u_id: " + reimbursement.getAuthor());
         System.out.println("rs_id: " + reimbursement.getStatusID());
         System.out.println("rt_id: " + reimbursement.getTypeId());
-
-        try {
-            Class.forName("org.postgresql.Driver");
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
+        System.out.println("descr: " + reimbursement.getDescription());
+        System.out.println("id_resolver: " + reimbursement.getResolver());
 
         Test.addReimburse(reimbursement.getId(), reimbursement.getAmount(), reimbursement.getAuthor(),
-                          reimbursement.getStatusID(), reimbursement.getTypeId());
-
-        /* Connection connection = ConnectionFactory.createConnection();
-        try (PreparedStatement stmt1 = connection.prepareStatement("Insert INTO csssquared.ers_reimbursements " +
-             "(r_id,r_amount,u_id_author,rs_id, rt_id) VALUES (?, ?, ?, ?, ?)")) {
-
-         stmt1.setInt(1, reimbursement.getId());
-         stmt1.setFloat(2, reimbursement.getAmount());
-         stmt1.setInt(3, reimbursement.getAuthor());
-         stmt1.setInt(4, reimbursement.getStatusID());
-         stmt1.setInt(5, reimbursement.getTypeId());
-
-         ResultSet rs = stmt1.executeQuery();
-        } catch (SQLException e1) {
-         e1.printStackTrace();
-        } */
+                          reimbursement.getStatusID(), reimbursement.getTypeId(), reimbursement.getDescription(),
+                          addTime(), reimbursement.getResolver());
     }
 
 }
