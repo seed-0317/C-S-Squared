@@ -1,17 +1,11 @@
 package servlets;
 
-import dao.DAOUtilities;
-import dao.UsersDAO;
-import model.User;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.sql.SQLException;
-import java.sql.SQLIntegrityConstraintViolationException;
 
 /**
  * Created by uzh051 on 4/19/17.
@@ -59,7 +53,7 @@ public class AddUserServlet extends HttpServlet {
 //        );
 
         //Call DAO method
-//        UsersDAO dao = DAOUtilities.getUsersDAO();
+//
 //        try {
 //            dao.saveUser(userToSave);
 //            request.getSession().setAttribute("message", "User Succesfully Crteated");

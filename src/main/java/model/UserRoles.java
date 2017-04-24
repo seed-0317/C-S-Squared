@@ -7,57 +7,40 @@ import java.util.Objects;
  */
 public class UserRoles {
 
-    private int urId;
-    private String urRole;
+    private int userRoleId;
+    private String userRole;
 
     public UserRoles(){
-
+        super();
     }
 
-    public UserRoles(int urId, String urRole) {
-        this.urId = urId;
-        this.urRole = urRole;
+    public UserRoles(int userRoleId, String userRole) {
+        super();
+        this.userRoleId = userRoleId;
+        this.userRole = userRole;
     }
 
-    public int getUrId() {
-        return urId;
+    public int getUserRoleId() {
+        return userRoleId;
     }
 
-    public String getUrRole() {
-        return urRole;
+    public void setUserRoleId(int userRoleId) {
+        this.userRoleId = userRoleId;
     }
 
-    public void setUrId(int urId) {
-        this.urId = urId;
+    public String getUserRole() {
+        return userRole;
     }
 
-    public void setUrRole(String urRole) {
-        this.urRole = urRole;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof UserRoles)) return false;
-
-        UserRoles userRoles = (UserRoles) o;
-
-        if (getUrId() != userRoles.getUrId()) return false;
-        return getUrRole() != null ? getUrRole().equals(userRoles.getUrRole()) : userRoles.getUrRole() == null;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = getUrId();
-        result = 31 * result + (getUrRole() != null ? getUrRole().hashCode() : 0);
-        return result;
+    public void setUserRole(String userRole) {
+        this.userRole = userRole;
     }
 
     @Override
     public String toString() {
         return "UserRoles{" +
-                "urId=" + urId +
-                ", urRole='" + urRole + '\'' +
+                "userRoleId=" + userRoleId +
+                ", userRole='" + userRole + '\'' +
                 '}';
     }
 }
