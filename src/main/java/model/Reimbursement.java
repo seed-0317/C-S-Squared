@@ -31,6 +31,9 @@ public class Reimbursement {
         this.statusID = statusID;
     }
 
+    public Reimbursement() {
+        this.id = id;
+    }
 
 
     public int getId() {

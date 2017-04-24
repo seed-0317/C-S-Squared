@@ -3,12 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="mystyles.css" media="screen" />
-    <title>C S Squared Reimbursement</title>
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <title>Employee Web Page</title>
+
 </head>
 <body>
+<h1>C S Squared System</h1>
+<div class = "well well-sm">
+    <ul class="nav nav-pills">
+        <li role="presentation"><a href="/home">Home</a></li>
+        <li role="presentation"><a href="/ListUsers">User List</a></li>
+        <li role="presentation"><a href="#">Reimbursements List</a></li>
+        <li role="presentation"><a href="/createReimbursement">Submit Reimbursement</a></li>
+        <li role="presentation"><a href="/login">LogOut</a></li>
+    </ul>
+</div>
+
 <h1>C S Squared Submit Reimbursement</h1>
 
-<form action="updateReimburse" method="post">
+<form action="createReimbursement" method="post">
+
+    <p>
+        <label for="id">ID:</label>
+        <input id="id" type="number" name ="id"/><br/>
+    </p>
     <p>
         <label for="amount">Amount:</label>
         <input id="amount" type="number" name ="amount"/><br/>
@@ -17,23 +36,92 @@
         <label for="description">Description:</label>
         <input id="description" type="text" name ="description"/><br/>
     </P>
+
+
+    <!--   <p>
+           <label for="receipt">Receipt:</label>
+           <input id="receipt" type="text" name ="receipt"/><br/>
+       </p>
+       <p>
+           <label for="submitted">Amount:</label>
+           <input id="submitted" type="text" name ="submitted"/><br/>
+       </p>
+       <p>
+           <label for="resolved">Resolved:</label>
+           <input id="resolved" type="text" name ="resolved"/><br/>
+       </p> -->
     <p>
-        <label for="type">Type:</label>
-        <input id="type" type="text" name ="type"/><br/>
-        <select  name="type">
-            <option value="Travel">
-                Travel
-            </option>
-            <option value="Training">
-                Training
-            </option>
-            <option value="Meals">
-                Meals
-            </option>
-        </select><br/>
+        <label for="id_author">AuthorId:</label>
+        <input id="id_author" type="number" name ="id_author"/><br/>
     </p>
+    <p>
+        <label for="id_resolver">ResolverId:</label>
+        <input id="id_resolver" type="number" name ="id_resolver"/><br/>
+    </p>
+    <p>
+        <label for="rs_id">StatusId:</label>
+        <input id="rs_id" type="number" name ="rs_id"/><br/>
+    </p>
+    <p>
+        <label for="rt_id">TypeId:</label>
+        <input id="rt_id" type="number" name ="rt_id"/><br/>
+    </p>
+
 
     <input type="submit" value="Submit"/>
 </form>
+
+
+<!--<form class="form-horizontal" action="createReimbursement" method="post">
+    <div class="form-group">
+        <label for="id" class="col-sm-2 control-label">ID:</label>
+        <div class="col-sm-2">
+        <input type="id" type="number" class="form-control" id="id" placeholder="id">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="amount" class="col-sm-2 control-label">Amount:</label>
+        <div class="col-sm-2">
+            <input type="amount" type="number" class="form-control" id="amount" placeholder="amount">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="description" class="col-sm-2 control-label">Description:</label>
+        <div class="col-sm-8">
+            <input type="description" type="text" class="form-control" id="description" placeholder="Description">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="id_author" class="col-sm-2 control-label">Author:</label>
+        <div class="col-sm-2">
+            <input type="id_author" type="number" class="form-control" id="id_author" placeholder="Author ID">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="id_resolver" class="col-sm-2 control-label">Resolver:</label>
+        <div class="col-sm-2">
+            <input type="id_resolver" type="numbrer"class="form-control" id="id_resolver" placeholder="Resolver ID">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="rs_id" class="col-sm-2 control-label">Status ID:</label>
+        <div class="col-sm-2">
+            <input type="rs_id" type="number" class="form-control" id="rs_id" placeholder="Status ID">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="rt_id" class="col-sm-2 control-label">Type ID:</label>
+        <div class="col-sm-2">
+            <input type="rt_id" type="number" class="form-control" id="rt_id" placeholder="Type ID">
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-default">Submit</button>
+        </div>
+    </div>
+
+</form>-->
+
 </body>
 </html>

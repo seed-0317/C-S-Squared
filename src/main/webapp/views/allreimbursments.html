@@ -24,35 +24,35 @@
     <table class="table table-striped">
         <thead>
         <tr>
-            <td>ID</td>
-            <td>Amount</td>
-            <td>Description</td>
-            <td>Submitted</td>
-            <td>Resolved</td>
-            <td>Author</td>
-            <td>Resolver</td>
-            <td>RS_ID</td>
-            <td>RT_ID</td>
+
+        <td>ID</td>
+        <td>Amount</td>
+        <td>Description</td>
+        <td>Submitted</td>
+        <td>Resolved</td>
+        <td>Author</td>
+        <td>Resolver</td>
+        <td>RS_ID</td>
+        <td>RT_ID</td>
+    </tr>
+    </thead>
+    <tbody>
+    <#list reimbursment as reimbursments>
+        <tr>
+            <td>${reimbursments.id}</td>
+            <td>${reimbursments.amount}</td>
+            <td>${reimbursments.description}</td>
+            <td>${reimbursments.submitted}</td>
+            <td>${reimbursments.resolved}</td>
+            <td>${reimbursments.author}</td>
+            <td>${reimbursments.resolver}</td>
+            <td>${reimbursments.rs_id}</td>
+            <td>${reimbursments.rt_id}</td>
+
         </tr>
-        </thead>
-        <tbody>
-        <#list reimbersment as reimbursments>
-
-            <tr>
-                <td>${reimbursments.id}</td>
-                <td>${reimbursments.amount}</td>
-                <td>${reimbursments.description}</td>
-                <td>${reimbursments.submitted}</td>
-                <td>${reimbursments.resolved}</td>
-                <td>${reimbursments.author}</td>
-                <td>${reimbursments.resolver}</td>
-                <td>${reimbursments.typeId}</td>
-                <td>${reimbursments.statusID}</td>
-
-            </tr>
-        </#list>
-        </tbody>
-    </table>
+    </#list>
+    </tbody>
+</table>
 </div>
 <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
