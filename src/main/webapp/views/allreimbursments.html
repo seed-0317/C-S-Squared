@@ -41,11 +41,11 @@
         <tr>
             <td>${reimbursments.id}</td>
             <td>${reimbursments.amount}</td>
-            <td>${reimbursments.description}</td>
+            <td>${(reimbursments.description) !""}</td>
             <td>${reimbursments.submitted}</td>
-            <td>${reimbursments.resolved}</td>
+            <td>${(reimbursments.resolved) !""}</td>
             <td>${reimbursments.author}</td>
-            <td>${reimbursments.resolver}</td>
+            <td>${(reimbursments.resolver) !""}</td>
             <td>${reimbursments.typeId}</td>
             <td>${reimbursments.statusID}</td>
 
