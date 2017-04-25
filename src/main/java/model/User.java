@@ -11,13 +11,13 @@ public class User {
     private String firstName;
     private String lastName;
     private String eMail;
-    private UserRoles role;
+    private int role;
 
     public User(){
 
     }
 
-    public User(int id, String userName, String firstName, String lastName, String eMail, UserRoles role) {
+    public User(int id, String userName, String firstName, String lastName, String eMail, int role) {
         this.id = id;
         this.userName = userName;
         this.firstName = firstName;
@@ -30,47 +30,47 @@ public class User {
         return id;
     }
 
-    public String getUserName() {
-        return userName;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public String geteMail() {
-        return eMail;
-    }
-
     public void setId(int id) {
         this.id = id;
     }
 
-    public UserRoles getRole(){
-        return role;
+    public String getUserName() {
+        return userName;
     }
 
     public void setUserName(String userName) {
         this.userName = userName;
     }
 
+    public String getFirstName() {
+        return firstName;
+    }
+
     public void setFirstName(String firstName) {
         this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
     }
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
 
+    public String geteMail() {
+        return eMail;
+    }
+
     public void seteMail(String eMail) {
         this.eMail = eMail;
     }
 
-    public void setRole(UserRoles role){
+    public int getRole() {
+        return role;
+    }
+
+    public void setRole(int role) {
         this.role = role;
     }
 
@@ -82,13 +82,13 @@ public class User {
         User user = (User) o;
 
         if (getId() != user.getId()) return false;
+        if (getRole() != user.getRole()) return false;
         if (!getUserName().equals(user.getUserName())) return false;
         if (getFirstName() != null ? !getFirstName().equals(user.getFirstName()) : user.getFirstName() != null)
             return false;
         if (getLastName() != null ? !getLastName().equals(user.getLastName()) : user.getLastName() != null)
             return false;
-        if (geteMail() != null ? !geteMail().equals(user.geteMail()) : user.geteMail() != null) return false;
-        return getRole() != null ? getRole().equals(user.getRole()) : user.getRole() == null;
+        return geteMail() != null ? geteMail().equals(user.geteMail()) : user.geteMail() == null;
     }
 
     @Override
@@ -98,7 +98,7 @@ public class User {
         result = 31 * result + (getFirstName() != null ? getFirstName().hashCode() : 0);
         result = 31 * result + (getLastName() != null ? getLastName().hashCode() : 0);
         result = 31 * result + (geteMail() != null ? geteMail().hashCode() : 0);
-        result = 31 * result + (getRole() != null ? getRole().hashCode() : 0);
+        result = 31 * result + getRole();
         return result;
     }
 

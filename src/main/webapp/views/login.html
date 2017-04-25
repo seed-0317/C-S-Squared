@@ -2,17 +2,36 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="mystyles.css" media="screen" />
+<!--    <link rel="stylesheet" type="text/css" href="mystyles.css" media="screen" /> -->
     <title>CSSquared</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
 </head>
 <body>
 
+
 <h1>Welcome to the C S Squared login page</h1>
 
-<form action="login" method="post">
-    Username: <input type="text" name ="name"/><br/>
-    <input type="submit" value="Log In"/>
-</form>
+
+<style>
+    .well {
+        width: 25%;
+        margin: auto;
+    }
+</style>
+
+<div class="well">
+    <form action="login" method="post">
+        Enter Username to login<br/>
+        Username: <input type="text" name ="name"/><br/>
+        <input type="submit" value="Log In"/>
+    </form>
+</div>
+
+
+
+<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
 </body>
 </html>
