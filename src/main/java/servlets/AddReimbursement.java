@@ -4,7 +4,6 @@ package servlets;
  * Created by tky247 on 4/23/17.
  */
 
-import dao.Test;
 import model.Reimbursement;
 
 import javax.servlet.ServletException;
@@ -14,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+import static dao.Test.addReimburse;
 import static dao.Test.addTime;
 
 @WebServlet("/createReimbursement")
@@ -27,8 +27,8 @@ public class AddReimbursement extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
         // read form fields
-        String r_id = request.getParameter("id");
         String amount = request.getParameter("amount");
         String u_id = request.getParameter("id_author");
         String rs_id = request.getParameter("rs_id");
@@ -36,7 +36,7 @@ public class AddReimbursement extends HttpServlet {
         String descr = request.getParameter("description");
         String id_resolver = request.getParameter("id_resolver");
 
-        reimbursement.setId(Integer.parseInt(r_id));
+        /*reimbursement.setId(Integer.parseInt(r_id));*/
         reimbursement.setAmount(Float.parseFloat(amount));
         reimbursement.setAuthor(Integer.parseInt(u_id));
         reimbursement.setStatusID(Integer.parseInt(rs_id));
@@ -44,17 +44,11 @@ public class AddReimbursement extends HttpServlet {
         reimbursement.setDescription(descr);
         reimbursement.setResolver(Integer.parseInt(id_resolver));
 
-        System.out.println("r_id: " + reimbursement.getId() );
-        System.out.println("amount: " + reimbursement.getAmount());
-        System.out.println("u_id: " + reimbursement.getAuthor());
-        System.out.println("rs_id: " + reimbursement.getStatusID());
-        System.out.println("rt_id: " + reimbursement.getTypeId());
-        System.out.println("descr: " + reimbursement.getDescription());
-        System.out.println("id_resolver: " + reimbursement.getResolver());
+        addReimburse(reimbursement.getAmount(), reimbursement.getAuthor(),
+                reimbursement.getStatusID(), reimbursement.getTypeId(), reimbursement.getDescription(),
+                addTime(), reimbursement.getResolver());
 
-        Test.addReimburse(reimbursement.getId(), reimbursement.getAmount(), reimbursement.getAuthor(),
-                          reimbursement.getStatusID(), reimbursement.getTypeId(), reimbursement.getDescription(),
-                          addTime(), reimbursement.getResolver());
+        response.sendRedirect("/login");
+
     }
-
 }
