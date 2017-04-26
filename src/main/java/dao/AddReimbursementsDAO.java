@@ -14,7 +14,7 @@ public class AddReimbursementsDAO {
                                     String formattedDate) {
         Connection connection = DAOUtilities.createConnection();
         try (PreparedStatement stmt1 = connection.prepareStatement("Insert INTO csssquared.ers_reimbursements " +
-                "(r_amount,u_id_author,rs_id, rt_id, r_description) VALUES (?, ?, ?, ?, ?, ?)")) {
+                "(r_amount,u_id_author,rs_id, rt_id, r_description, r_submitted) VALUES (?, ?, ?, ?, ?, ?)")) {
             stmt1.setFloat(1, amount);
             stmt1.setInt(2, author);
             stmt1.setInt(3, statusID);

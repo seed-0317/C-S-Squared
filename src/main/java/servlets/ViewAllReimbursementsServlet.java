@@ -25,7 +25,7 @@ public class ViewAllReimbursementsServlet extends HttpServlet {
         ReimbursmentsDAO dao = new ReimbursmentsDAOImpl();
         List<Reimbursement> reimbursements = null;
         reimbursements = dao.getAllReimbursments();
-        request.setAttribute("reimbursment", reimbursements);
+        request.setAttribute("reimbersment", reimbursements);
         request.getRequestDispatcher("/views/allreimbursments.html").forward(request, response);
 
     }

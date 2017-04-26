@@ -1,5 +1,7 @@
 package servlets;
 
+import dao.ReimbursmentsDAO;
+import dao.ReimbursmentsDAOImpl;
 import dao.TestReimbursementStatus;
 import model.Reimbursement;
 
@@ -22,29 +24,13 @@ public class ReviewReimbursementsServlet extends HttpServlet {
 
     }
 
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String username = request.getParameter("name");
-        username ="bjones";
-//        System.out.println("Hi " + username);
-        TestReimbursementStatus status = new TestReimbursementStatus();
+        ReimbursmentsDAO dao = new ReimbursmentsDAOImpl();
         List<Reimbursement> reimbursements = null;
-        try {
-            reimbursements = status.selectAllByUsername(username);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        if (reimbursements != null) {
-//            System.out.println("Inside Session");
-            HttpSession session = request.getSession();
-            session.setAttribute("reimbersment", reimbursements);
-//            System.out.println("print ris"+ reimbursements);
-            request.getRequestDispatcher("/views/reviewreimbursments.html").forward(request,response);
-
-        } else {
-            response.sendRedirect("login");
-        }
-
+        reimbursements = dao.getAllReimbursments();
+        request.setAttribute("reimbersment", reimbursements);
+        request.getRequestDispatcher("/views/reviewreimbursments.html").forward(request, response);
 
     }
 }

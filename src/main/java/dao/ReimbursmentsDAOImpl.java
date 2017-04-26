@@ -26,7 +26,7 @@ public class ReimbursmentsDAOImpl implements ReimbursmentsDAO{
                 newReimbursement.setId(rs.getInt("r_id"));
                 newReimbursement.setAmount(rs.getFloat("r_amount"));
                 newReimbursement.setDescription(rs.getString("r_description"));
-                newReimbursement.setSubmitted(rs.getString("r_sumbitted"));
+                newReimbursement.setSubmitted(rs.getString("r_submitted"));
                 newReimbursement.setResolved(rs.getString("r_resolved"));
                 newReimbursement.setAuthor(rs.getInt("u_id_author"));
                 newReimbursement.setResolver(rs.getInt("u_id_resolver"));
