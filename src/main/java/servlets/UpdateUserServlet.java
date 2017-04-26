@@ -27,12 +27,14 @@ public class UpdateUserServlet extends HttpServlet {
         //System.out.println(session.getAttribute("email"));
         //System.out.println(session.getAttribute("role"));
 
+
         //session.getAttribute("user");
         //session.getAttribute("firstname");
         //session.getAttribute("lastname");
         //session.getAttribute("email");
         //session.getAttribute("role");
     }
+
 
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
