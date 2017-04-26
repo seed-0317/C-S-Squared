@@ -76,8 +76,13 @@ public class ERSLoginServlet extends HttpServlet {
 
             request.setAttribute("role",temp.getRole());
             session.setAttribute("role",temp.getRole());
-
-            response.sendRedirect("home");
+            String role = (String)session.getAttribute("role");
+            if (role.equals("Employee")){
+                response.sendRedirect("emplHome");
+            }
+            else {
+                response.sendRedirect("home");
+            }
         } else {
 
                 // user does not exist in database
