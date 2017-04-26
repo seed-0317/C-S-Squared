@@ -1,42 +1,45 @@
 package servlets;
 
+/**
+ * Created by tky247 on 4/23/17.
+ */
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-/**
- * Created by nof191 on 4/25/17.
- */
-@WebServlet(name = "/updateUser")
+@WebServlet("/updateUser")
 public class UpdateUserServlet extends HttpServlet {
-
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        request.getParameters("firstName")
-
-//        User user = new User(all my new data)
-
-//        businessLogic.updateUser(user)
-
-        //go somewhere
-
-    }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        //ASSERT: username of logged in user is in the session under key "user"
+        request.getRequestDispatcher("/views/userupdate.html").forward(request, response);
 
-        //request.getSession.getAttribute("user")
+        //HttpSession session = request.getSession();
+        //System.out.println(session.getAttribute("user"));
+        //System.out.println(session.getAttribute("firstname"));
+        //System.out.println(session.getAttribute("lastname"));
+        //System.out.println(session.getAttribute("email"));
+        //System.out.println(session.getAttribute("role"));
 
-        //User userInfo = businessLogic.getUserInfo(username)
-
-        request.setAttribute("userInfo", userInfo);
-
-        //getReqDispatcher("updateUser.html").forward
-
+        //session.getAttribute("user");
+        //session.getAttribute("firstname");
+        //session.getAttribute("lastname");
+        //session.getAttribute("email");
+        //session.getAttribute("role");
     }
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        session.getAttribute("user");
+        session.getAttribute("firstname");
+        session.getAttribute("lastname");
+        session.getAttribute("email");
+        session.getAttribute("role");
+    }
+
 }

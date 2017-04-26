@@ -59,7 +59,7 @@ public class UsersDAOImpl implements UsersDAO {
             preparedstmt.setString(3,user.getFirstName());
             preparedstmt.setString(4,user.getLastName());
             preparedstmt.setString(5,user.geteMail());
-            preparedstmt.setInt(6,user.getRole());
+            preparedstmt.setString(6,user.getRole());
 
             success = preparedstmt.executeUpdate();
         }catch (SQLException e){
@@ -100,9 +100,9 @@ public class UsersDAOImpl implements UsersDAO {
 
         try{
                 connection = DAOUtilities.createConnection();
-                String sql =  "SELECT u_id, u_username, u_firstname, u_lastname, u_email ";
-                sql = sql + "   from csssquared.ers_users";
-                sql = sql +  " where u_username = ?";
+                String sql =  "SELECT a.u_id, a.u_username, a.u_firstname, a.u_lastname, a.u_email, b.ur_role ";
+                sql = sql + "   from csssquared.ers_users a, csssquared.ers_user_roles b";
+                sql = sql +  " where a.u_username = ? AND a.ur_id = b.ur_id";
                 preparedstmt = connection.prepareStatement(sql);
 
                 preparedstmt.setString(1, username);
@@ -110,16 +110,16 @@ public class UsersDAOImpl implements UsersDAO {
 
                 if (resultSet.next()) {
                     user = new User();
-                    user.setId(resultSet.getInt("u_id"));
-                    user.setUserName(resultSet.getString("u_username"));
-                    user.setFirstName(resultSet.getString("u_firstname"));
-                    user.setLastName(resultSet.getString("u_lastname"));
-                    user.seteMail(resultSet.getString("u_email"));
-
                     UserRoles roles = new UserRoles();
-                    roles.setUrId(resultSet.getInt("ur_id"));
-                    roles.setUrRole(resultSet.getString("ur_role"));
- //                   user.setRole(roles);
+
+                    user.setId(resultSet.getInt(1));
+                    user.setUserName(resultSet.getString(2));
+                    user.setFirstName(resultSet.getString(3));
+                    user.setLastName(resultSet.getString(4));
+                    user.seteMail(resultSet.getString(5));
+                    user.setRole(resultSet.getString(6));
+
+                    //System.out.println(roles.getUrRole());
                 }
 
             } catch (SQLException e) {
