@@ -23,12 +23,17 @@ public class UpdateUserServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        // querry the db with user
+        // user dog = new user
         request.getRequestDispatcher("/views/userupdate.html").forward(request, response);
     }
 
 
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+
+
         HttpSession session = request.getSession();
         session.getAttribute("user");
         session.getAttribute("firstname");

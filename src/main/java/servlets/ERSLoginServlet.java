@@ -62,6 +62,7 @@ public class ERSLoginServlet extends HttpServlet {
 //            session.setAttribute("dog", username);
 
             HttpSession session = request.getSession();
+            session.setAttribute("dog", temp);
             request.setAttribute("user", username);
             session.setAttribute("user", username);
 
