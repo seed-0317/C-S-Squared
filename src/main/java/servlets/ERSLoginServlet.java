@@ -1,6 +1,5 @@
 package servlets;
 
-import dao.DAOUtilities;
 import dao.UsersDAO;
 import dao.UsersDAOImpl;
 import model.User;
@@ -12,7 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.List;
 
 /**
  * Created by uzh051 on 4/19/17.
@@ -46,6 +44,16 @@ public class ERSLoginServlet extends HttpServlet {
         UsersDAO dao = new UsersDAOImpl();
         User temp = dao.getUser(username);
 
+        /*user = new User();
+          user.setId(resultSet.getInt("u_id"));
+          user.setUserName(resultSet.getString("u_username"));
+          user.setFirstName(resultSet.getString("u_firstname"));
+          user.setLastName(resultSet.getString("u_lastname"));
+          user.seteMail(resultSet.getString("u_email"));
+          setUrRole*/
+
+
+
 
         if (temp != null) {
 
@@ -54,7 +62,21 @@ public class ERSLoginServlet extends HttpServlet {
 //            session.setAttribute("dog", username);
 
             HttpSession session = request.getSession();
+            request.setAttribute("user", username);
             session.setAttribute("user", username);
+
+            request.setAttribute("firstname", temp.getFirstName());
+            session.setAttribute("firstname", temp.getFirstName());
+
+            request.setAttribute("lastname", temp.getLastName());
+            session.setAttribute("lastname", temp.getLastName());
+
+            request.setAttribute("email",temp.geteMail());
+            session.setAttribute("email",temp.geteMail());
+
+            request.setAttribute("role",temp.getRole());
+            session.setAttribute("role",temp.getRole());
+
             response.sendRedirect("home");
         } else {
 

@@ -11,13 +11,13 @@ public class User {
     private String firstName;
     private String lastName;
     private String eMail;
-    private int role;
+    private String role;
 
     public User(){
 
     }
 
-    public User(int id, String userName, String firstName, String lastName, String eMail, int role) {
+    public User(int id, String userName, String firstName, String lastName, String eMail, String role) {
         this.id = id;
         this.userName = userName;
         this.firstName = firstName;
@@ -66,11 +66,11 @@ public class User {
         this.eMail = eMail;
     }
 
-    public int getRole() {
+    public String getRole() {
         return role;
     }
 
-    public void setRole(int role) {
+    public void setRole(String role) {
         this.role = role;
     }
 
@@ -93,13 +93,7 @@ public class User {
 
     @Override
     public int hashCode() {
-        int result = getId();
-        result = 31 * result + getUserName().hashCode();
-        result = 31 * result + (getFirstName() != null ? getFirstName().hashCode() : 0);
-        result = 31 * result + (getLastName() != null ? getLastName().hashCode() : 0);
-        result = 31 * result + (geteMail() != null ? geteMail().hashCode() : 0);
-        result = 31 * result + getRole();
-        return result;
+        return super.hashCode();
     }
 
     @Override
