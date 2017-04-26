@@ -34,7 +34,7 @@ public class UpdateUserServlet extends HttpServlet {
 
         //User userInfo = businessLogic.getUserInfo(username)
 
-        request.setAttribute("userInfo", userInfo);
+//        request.setAttribute("userInfo", userInfo);
 
         //getReqDispatcher("updateUser.html").forward
 
