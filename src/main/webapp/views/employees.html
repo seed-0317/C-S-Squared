@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -46,7 +46,7 @@
                 <td>${employees.firstName}</td>
                 <td>${employees.lastName}</td>
                 <td>${employees.eMail}</td>
-                <td>${employees.role}</td>
+                <td>${(employees.role) !"missing"}</td>
             </tr>
         </#list>
         </tbody>

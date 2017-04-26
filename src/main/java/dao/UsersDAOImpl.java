@@ -17,17 +17,19 @@ public class UsersDAOImpl implements UsersDAO {
         List<User> users = new ArrayList<>();
 
         try (Connection connection = DAOUtilities.createConnection()){
-            PreparedStatement stmt1 = connection.prepareStatement("select * from csssquared.ers_users");
+            String sql = "select u.u_id, u.u_username, u.u_firstname, u.u_lastname, u.u_email, r.ur_role";
+                    sql = sql + " from csssquared.ers_users u, csssquared.ers_user_roles r where  u.ur_id = r.ur_id";
+            PreparedStatement stmt1 = connection.prepareStatement(sql);
             ResultSet rs = stmt1.executeQuery();
 
             while (rs.next()) {
                 User newUser = new User();
-                newUser.setId(rs.getInt("u_id"));
-                newUser.setUserName(rs.getString("u_username"));
-                newUser.setFirstName(rs.getString("u_firstname"));
-                newUser.setLastName(rs.getString("u_lastname"));
-                newUser.seteMail(rs.getString("u_email"));
-                newUser.setId(rs.getInt("ur_id"));
+                newUser.setId(rs.getInt(1));
+                newUser.setUserName(rs.getString(2));
+                newUser.setFirstName(rs.getString(3));
+                newUser.setLastName(rs.getString(4));
+                newUser.seteMail(rs.getString(5));
+                newUser.setRole(rs.getString(6));
                 users.add(newUser);
             }
         } catch (SQLException e) {
