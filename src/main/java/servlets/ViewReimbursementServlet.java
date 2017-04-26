@@ -18,18 +18,11 @@ import java.util.List;
  */
 @WebServlet(urlPatterns = "/ListRis")
 public class ViewReimbursementServlet extends HttpServlet {
-//    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//
-//        request.getRequestDispatcher("/views/login.html").forward(request, response);
-//
-//
-//    }
+
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-        String username = request.getParameter("name");
-        username ="bjones";
-        System.out.println("Hi " + username);
+        HttpSession session = request.getSession();
+        String username = (String)session.getAttribute("user");
         TestReimbursementStatus status = new TestReimbursementStatus();
         List<Reimbursement> reimbursements = null;
         try {
@@ -39,10 +32,7 @@ public class ViewReimbursementServlet extends HttpServlet {
         }
 
         if (reimbursements != null) {
-            System.out.println("Inside Session");
-                HttpSession session = request.getSession();
                 session.setAttribute("reimbersment", reimbursements);
-            System.out.println("print ris"+ reimbursements);
                 request.getRequestDispatcher("/views/allreimbursments.html").forward(request,response);
 
             } else {

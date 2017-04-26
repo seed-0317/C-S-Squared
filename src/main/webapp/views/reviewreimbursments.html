@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="mystyles.css" media="screen" />
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <title>Employee Web Page</title>
+
+</head>
+<body>
+<h1>C S Squared System</h1>
+<div class = "well well-sm">
+    <ul class="nav nav-pills">
+        <li role="presentation"><a href="/home">Home</a></li>
+        <li role="presentation"><a href="/ListUsers">User List</a></li>
+        <li role="presentation"><a href="/ListRis">Reimbursements List</a></li>
+        <li role="presentation"><a href="/createReimbursement">Submit Reimbursement</a></li>
+        <li role="presentation"><a href="/reviewReimbursement">Review Reimbursement</a></li>
+        <li role="presentation"><a href="/login">LogOut</a></li>
+    </ul>
+</div>
+
+<h2>C S Squared Reimbursement Listing</h2>
+
+
+<div class="container-responsive">
+    <div class="row">
+        <div class="col-xs-12 col-sm-1">ID</div>
+        <div class="col-xs-12 col-sm-2">Amount</div>
+        <div class="col-xs-12 col-sm-2">Description</div>
+        <div class="col-xs-12 col-sm-2">Submitted</div>
+        <div class="col-xs-12 col-sm-1">Author</div>
+        <div class="col-xs-12 col-sm-1">Type</div>
+        <div class="col-xs-12 col-sm-1">Status</div>
+    </div>
+
+    <#list users as employees>
+        <div class="row">
+            <div class="col-xs-12 col-sm-1">${reimbursments.id}</div>
+            <div class="col-xs-12 col-sm-2">${reimbursments.amount}</div>
+            <div class="col-xs-12 col-sm-2">${(reimbursments.description) !""}</div>
+            <div class="col-xs-12 col-sm-2">${reimbursments.submitted}</div>
+            <div class="col-xs-12 col-sm-1">${reimbursments.author}</div>
+            <div class="col-xs-12 col-sm-1">${reimbursments.typeId}</div>
+            <div class="col-xs-12 col-sm-1">${reimbursments.statusID}</div>
+            <div class = "col-sm-1">
+                <form method="Post" action="/approve">
+                    <input type="integer" hidden="hidden" name="r_id" value="${reimbursments.id}"/>
+                    <button type="submit">Approve</button>
+                </form>
+            </div>
+            <div class = "col-sm-1">
+                <form method="Post" action="/reject">
+                    <input type="text" hidden="hidden" name="r_id" value="${reimbursments.id}"/>
+                    <button type="submit">Reject</button>
+                </form>
+
+            </div>
+
+        </div>
+    </#list>
+</div>
+<!--
+<div class=table-responsive>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+
+            <td>ID</td>
+            <td>Amount</td>
+            <td>Description</td>
+            <td>Submitted</td>
+            <td>Author</td>
+            <td>RS_ID</td>
+            <td>RT_ID</td>
+        </tr>
+        </thead>
+        <tbody>
+        <#list reimbersment as reimbursments>
+            <tr>
+                <td>${reimbursments.id}</td>
+                <td>${reimbursments.amount}</td>
+                <td>${(reimbursments.description) !""}</td>
+                <td>${reimbursments.submitted}</td>
+                <td>${reimbursments.author}</td>
+                <td>${reimbursments.typeId}</td>
+                <td>${reimbursments.statusID}</td>
+                <td><div><form method="post" action="/approve">
+                    <input type="number" hidden="hidden" name="id" value="$reimbursments.id"/>
+                    <botton type="submit">Approve</botton>
+                </form></div> </td>
+                <td><form method="post" action="/reject">
+                    <input type="number" hidden="hidden" name="id" value="$reimbursments.id"/>
+                    <botton type="submit">Reject</botton>
+                </form> </td>
+            </tr>
+        </#list>
+        </tbody>
+    </table>
+</div> -->
+<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</body>
+</html>
