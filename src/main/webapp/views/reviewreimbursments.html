@@ -48,12 +48,14 @@
             <div class = "col-sm-1">
                 <form method="Post" action="/approve">
                     <input type="integer" hidden="hidden" name="r_id" value="${reimbursments.id}"/>
+                    <input type="integer" hidden="hidden" name="rs_id" value="2"/>
                     <button type="submit">Approve</button>
                 </form>
             </div>
             <div class = "col-sm-1">
                 <form method="Post" action="/reject">
                     <input type="text" hidden="hidden" name="r_id" value="${reimbursments.id}"/>
+                    <input type="text" hidden="hidden" name="rs_id" value="3"/>
                     <button type="submit">Reject</button>
                 </form>
 
