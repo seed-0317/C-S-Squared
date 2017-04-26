@@ -4,6 +4,8 @@ package servlets;
  * Created by tky247 on 4/23/17.
  */
 
+import dao.UsersDAO;
+import dao.UsersDAOImpl;
 import model.User;
 
 import javax.servlet.ServletException;
@@ -25,6 +27,14 @@ public class UpdateUserServlet extends HttpServlet {
 
         // querry the db with user
         // user dog = new user
+
+        HttpSession session = request.getSession();
+        String userName = (String) session.getAttribute("user");
+
+        UsersDAO dao = new UsersDAOImpl();
+        User temp = dao.getUser(userName);
+        session.setAttribute("upName", temp);
+
         request.getRequestDispatcher("/views/userupdate.html").forward(request, response);
     }
 
@@ -32,17 +42,20 @@ public class UpdateUserServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-
-
-        HttpSession session = request.getSession();
-        session.getAttribute("user");
-        session.getAttribute("firstname");
-        session.getAttribute("lastname");
-        session.getAttribute("email");
-        session.getAttribute("role");
-        String userName = (String) (String) session.getAttribute("user");
+        // HttpSession session = request.getSession();
+        //session.getAttribute("user");
+        //session.getAttribute("firstname");
+        //session.getAttribute("lastname");
+        //session.getAttribute("email");
+        //session.getAttribute("role");
+        //String userName = (String) (String) session.getAttribute("user");
 
         // read form fields
+
+        HttpSession session = request.getSession();
+        String userName = (String) session.getAttribute("user");
+
+
         String firstName = request.getParameter("firstname");
         String lastName = request.getParameter("lastname");
         String email = request.getParameter("email");
