@@ -130,4 +130,22 @@ public class UsersDAOImpl implements UsersDAO {
 
         return user;
     }
+
+
+    public static void updateUser(String userName, String firstName, String lastName, String eMail) throws SQLException {
+
+        Connection connection = null;
+        PreparedStatement preparedstmt = null;
+        User user = null;
+        connection = DAOUtilities.createConnection();
+
+        String sql = "UPDATE csssquared.ers_users Set u_firstname = ?, u_lastname = ?, u_email = ? where u_username = ?";
+        preparedstmt = connection.prepareStatement(sql);
+        preparedstmt.setString(1, firstName);
+        preparedstmt.setString(2, lastName);
+        preparedstmt.setString(3, eMail);
+        preparedstmt.setString(4,userName);
+        ResultSet resultSet = preparedstmt.executeQuery();
+    }
+
 }
