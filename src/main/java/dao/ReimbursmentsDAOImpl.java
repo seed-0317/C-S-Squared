@@ -41,6 +41,33 @@ public class ReimbursmentsDAOImpl implements ReimbursmentsDAO{
     }
 
     @Override
+    public List<Reimbursement> getAllUnapprovedReimbursments() {
+        List<Reimbursement> reimbursements = new ArrayList<>();
+
+        try (Connection connection = DAOUtilities.createConnection()){
+            PreparedStatement stmt1 = connection.prepareStatement("select r_id, r_amount, r_description, r_submitted, r_resolved, u_id_author, u_id_resolver, rs_id, rt_id from csssquared.ers_reimbursements WHERE rs_id <> 2");
+            ResultSet rs = stmt1.executeQuery();
+
+            while (rs.next()) {
+                Reimbursement newReimbursement = new Reimbursement();
+                newReimbursement.setId(rs.getInt("r_id"));
+                newReimbursement.setAmount(rs.getFloat("r_amount"));
+                newReimbursement.setDescription(rs.getString("r_description"));
+                newReimbursement.setSubmitted(rs.getString("r_submitted"));
+                newReimbursement.setResolved(rs.getString("r_resolved"));
+                newReimbursement.setAuthor(rs.getInt("u_id_author"));
+                newReimbursement.setResolver(rs.getInt("u_id_resolver"));
+                newReimbursement.setStatusID(rs.getInt("rs_id"));
+                newReimbursement.setTypeId(rs.getInt("rt_id"));
+                reimbursements.add(newReimbursement);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return reimbursements;
+    }
+
+    @Override
     public void createReimbursment(Reimbursement newReimbursment) throws Exception {
 
     }

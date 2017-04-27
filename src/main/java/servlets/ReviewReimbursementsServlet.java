@@ -28,7 +28,8 @@ public class ReviewReimbursementsServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ReimbursmentsDAO dao = new ReimbursmentsDAOImpl();
         List<Reimbursement> reimbursements = null;
-        reimbursements = dao.getAllReimbursments();
+        reimbursements = dao.getAllUnapprovedReimbursments();
+        System.out.println("we are in all un approved servlet" + reimbursements);
         request.setAttribute("reimbersment", reimbursements);
         request.getRequestDispatcher("/views/reviewreimbursments.html").forward(request, response);
 

@@ -12,6 +12,10 @@ public interface ReimbursmentsDAO {
 
     List<Reimbursement> getAllReimbursments();
 
+    // used to retrive a list of Unapproved reimbursments
+
+    List<Reimbursement> getAllUnapprovedReimbursments();
+
     // user to create a reimbursment
 
     void createReimbursment(Reimbursement newReimbursment) throws Exception;
