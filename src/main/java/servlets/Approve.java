@@ -14,13 +14,12 @@ import java.sql.SQLException;
 import static dao.AddReimbursementsDAO.StatusReimburse;
 import static dao.AddReimbursementsDAO.addTime;
 
-
 /**
- * Created by tky247 on 4/26/17.
+ * Created by tky247 on 4/27/17.
  */
-@WebServlet("/reject")
-public class Reject extends HttpServlet {
 
+@WebServlet("/approve")
+public class Approve extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -55,4 +54,5 @@ public class Reject extends HttpServlet {
         response.sendRedirect("/home");
 
     }
+
 }
