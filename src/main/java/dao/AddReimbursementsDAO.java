@@ -33,6 +33,22 @@ public class AddReimbursementsDAO {
         String formattedDate = sdf.format(date);
         return formattedDate;
     }
+
+    public static void StatusReimburse(int statusId, int resolver, String timeStamp, int id) throws SQLException{
+        Connection connection = null;
+        PreparedStatement preparedstmt = null;
+        connection = DAOUtilities.createConnection();
+
+        String sql = "UPDATE csssquared.ers_reimbursements Set rs_id = ?, u_id_resolver = ?, r_resolved = ? where r_id = ?";
+        preparedstmt = connection.prepareStatement(sql);
+        preparedstmt.setInt(1, statusId);
+        preparedstmt.setInt(2, resolver);
+        preparedstmt.setString(3, timeStamp);
+        preparedstmt.setInt(4, id);
+        ResultSet resultSet = preparedstmt.executeQuery();
+
+        System.out.println("StatusReimburse()");
+    }
 }
 
 

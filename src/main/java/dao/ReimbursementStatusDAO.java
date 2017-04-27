@@ -1,11 +1,11 @@
 package dao;
 
+import model.ReimbursementStatus;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
-import model.ReimbursementStatus;
 /**
  * Created by uzh051 on 4/23/17.
  */
