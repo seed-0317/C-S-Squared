@@ -46,7 +46,7 @@ public class AddReimbursement extends HttpServlet {
                 reimbursement.getStatusID(), reimbursement.getTypeId(), reimbursement.getDescription(),
                 addTime());
 
-        response.sendRedirect("/home");
+        response.sendRedirect("/createReimbursement");
 
     }
 }

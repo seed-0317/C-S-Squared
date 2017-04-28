@@ -72,7 +72,7 @@ public class UpdateUserServlet extends HttpServlet {
             e.printStackTrace();
         }
 
-        response.sendRedirect("/home");
+        response.sendRedirect("/updateUser");
 
 
     }
